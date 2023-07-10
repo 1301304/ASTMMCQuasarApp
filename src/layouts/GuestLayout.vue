@@ -13,10 +13,11 @@
       </q-toolbar>
 
       <q-tabs align="left">
-        <q-route-tab to="/page1" label="Guest" />
+        <q-route-tab to="/login" label="Guest" />
         <q-route-tab to="/patient" label="Patient's Page" />
         <q-route-tab to="/appointment" label="Appointments" />
         <q-route-tab to="/consultation" label="Consultation" />
+        <q-route-tab to="/chat" label="Chat's Page" />
       </q-tabs>
     </q-header>
 

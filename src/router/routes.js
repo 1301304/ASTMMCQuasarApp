@@ -1,26 +1,39 @@
 const routes = [
   {
-    path: "/page1",
-    component: () => import("layouts/GuestLayout.vue"),
-    children: [{ path: "", component: () => import("pages/LoginPage.vue") }],
-  },
-  {
-    path: "/patient",
-    component: () => import("layouts/GuestLayout.vue"),
-    children: [{ path: "", component: () => import("pages/PatientsPage.vue") }],
-  },
-  {
-    path: "/appointment",
+    path: "/guest",
     component: () => import("layouts/GuestLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/AppointmentsPage.vue") },
+      { path: "", component: () => import("pages/LoginPage.vue") },
+      {
+        path: "register",
+        component: () => import("pages/RegistrationPage.vue"),
+      },
     ],
   },
   {
-    path: "/consultation",
-    component: () => import("layouts/GuestLayout.vue"),
+    path: "/auth",
+    component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/ConsultationsPage.vue") },
+      {
+        path: "patients",
+        component: () => import("pages/PatientsPage.vue"),
+        name: "Patients",
+      },
+      {
+        path: "appointments",
+        component: () => import("pages/AppointmentsPage.vue"),
+        name: "Appointments",
+      },
+      {
+        path: "chats",
+        component: () => import("pages/ChatsPage.vue"),
+        name: "Chats",
+      },
+      {
+        path: "consultations",
+        component: () => import("pages/ConsultationsPage.vue"),
+        name: "Consultations",
+      },
     ],
   },
 

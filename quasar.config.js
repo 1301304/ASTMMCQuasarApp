@@ -28,7 +28,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
-    boot: ["i18n", "axios"],
+    boot: ["i18n", "axios", "firebaseConnection"],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
@@ -70,6 +70,13 @@ module.exports = configure(function (/* ctx */) {
       // analyze: true,
       env: {
         APP_NAME: "Quasar App",
+        FIREBASE_API_KEY: "AIzaSyCzJJrmtBVGMgm7O65Zfkm5SI39ufAOlcQ",
+        FIREBASE_AUTH_DOMAIN: "ghitap-telemed-app-16a8e.firebaseapp.com",
+        FIREBASE_PROJECT_ID: "ghitap-telemed-app-16a8e",
+        FIREBASE_STORAGE_BUCKET: "ghitap-telemed-app-16a8e.appspot.com",
+        FIREBASE_MESSAGING_SENDER_ID: "126748561901",
+        FIREBASE_APP_ID: "1:126748561901:web:f031c561b86955d22f57e4",
+        FIREBASE_MEASUREMENT_ID: "G-PL1LP4FB39"
       },
       // rawDefine: {}
       // ignorePublicFolder: true,

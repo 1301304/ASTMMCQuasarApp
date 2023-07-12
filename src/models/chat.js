@@ -1,23 +1,43 @@
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  or
+} from "firebase/firestore";
+import { db } from 'boot/firebaseConnection'
 
-import { collection, getDocs, addDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
-import { db } from "boot/firebaseConnection";
+const allChats = async () => {
+  const q = query(collection(db, "chats"),
+    or(where('sender_id', '==', '1234'),
+      where('receiver_id', '==', '1234')
+    )
+  );
+  const querySnapshot = await getDocs(q);
 
-const allChats = () => {
-  return JSON.parse(localStorage.getItem("chats") || "[]");
+  let chats = [];
+  querySnapshot.forEach((doc) => {
+    chats.push({ ...doc.data(), id: doc.id });
+  });
+
+  return chats;
 };
 
-export const getChats = (user_id) => {
-  return new Promise((resolve) => {
-    setTimeout(function () {
-      const chats = allChats();
+export const getChats = async (user_id) => {
+  const q = query(collection(db, "chats"),
+    or(where('sender_id', '==', user_id),
+      where('receiver_id', '==', user_id)
+    )
+  );
+  const querySnapshot = await getDocs(q);
 
-      resolve(
-        chats.filter(
-          (chat) => chat.sender_id === user_id || chat.receiver_id === user_id
-        )
-      );
-    }, 1000);
+  let chats = [];
+  querySnapshot.forEach((doc) => {
+    chats.push({ ...doc.data(), id: doc.id });
   });
+
+  return chats;
 };
 
 export const createChat = async (text, sender, receiver) => {
@@ -26,9 +46,10 @@ export const createChat = async (text, sender, receiver) => {
     sender_id: sender.id,
     receiver_id: receiver.id,
     sender_name: sender.name,
-    receiver_name: receiver.name,
+    receiver_name: receiver.name
   };
+
   const docRef = await addDoc(collection(db, "chats"), data);
 
-  return docRef.id
+  return docRef.id;
 };

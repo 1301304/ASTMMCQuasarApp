@@ -49,9 +49,11 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
+
       target: {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node16",
+        env: require('dotenv').config().parsed,
       },
 
       alias: {
@@ -66,19 +68,11 @@ module.exports = configure(function (/* ctx */) {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      //publicPath: '/app/',
+      publicPath: '/app/',
+
+      env: require('dotenv').config().parsed,
       // analyze: true,
-      env: {
-        APP_NAME: "Quasar App",
-        FIREBASE_API_KEY: "AIzaSyCzJJrmtBVGMgm7O65Zfkm5SI39ufAOlcQ",
-        FIREBASE_AUTH_DOMAIN: "ghitap-telemed-app-16a8e.firebaseapp.com",
-        FIREBASE_PROJECT_ID: "ghitap-telemed-app-16a8e",
-        FIREBASE_STORAGE_BUCKET: "ghitap-telemed-app-16a8e.appspot.com",
-        FIREBASE_MESSAGING_SENDER_ID: "126748561901",
-        FIREBASE_APP_ID: "1:126748561901:web:f031c561b86955d22f57e4",
-        FIREBASE_MEASUREMENT_ID: "G-PL1LP4FB39",
-        API_URL: "http://localhost:8000"
-      },
+
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -231,5 +225,6 @@ module.exports = configure(function (/* ctx */) {
       // extendBexScriptsConf (esbuildConf) {}
       // extendBexManifestJson (json) {}
     },
+
   };
 });

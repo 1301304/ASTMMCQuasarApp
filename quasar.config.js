@@ -49,11 +49,9 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
-
       target: {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node16",
-        env: require('dotenv').config().parsed,
       },
 
       alias: {
@@ -68,11 +66,9 @@ module.exports = configure(function (/* ctx */) {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      publicPath: '/app/',
-
-      env: require('dotenv').config().parsed,
+      // publicPath: '/app/',
       // analyze: true,
-
+      env: require('dotenv').config().parsed,
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -103,11 +99,7 @@ module.exports = configure(function (/* ctx */) {
       proxy: {
         // proxy all requests starting with /api to jsonplaceholder
         '/api': {
-          target: 'http://some.api.target.com:7070',
-          changeOrigin: true,
-          pathRewrite: {
-            '^/api': ''
-          }
+          target: 'http://localhost:8000',
         }
       }
     },
@@ -225,6 +217,5 @@ module.exports = configure(function (/* ctx */) {
       // extendBexScriptsConf (esbuildConf) {}
       // extendBexManifestJson (json) {}
     },
-
   };
 });
